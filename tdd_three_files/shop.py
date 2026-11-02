@@ -1,18 +1,22 @@
-"""Учебный магазин. Версия RED: тесты уже есть, но логика пока не написана."""
+"""Простейший онлайн-магазин. Версия GREEN: все пять тестов проходят."""
 
 
 class Shop:
     def __init__(self):
-        self.items = []  # Здесь будут храниться цены товаров
+        self.items = []  # Список цен товаров
 
     def add(self, price):
-        # TODO: добавить цену товара в список
-        pass
+        # Добавляем цену товара в корзину.
+        self.items.append(price)
 
     def total(self):
-        # TODO: посчитать общую сумму
-        return 0
+        # Складываем цены всех товаров в корзине.
+        return sum(self.items)
 
     def pay(self, money):
-        # TODO: проверить сумму оплаты и вернуть сдачу
-        raise NotImplementedError("Оплата пока не реализована")
+        # Если денег мало, отклоняем оплату.
+        if money < self.total():
+            raise ValueError("Недостаточно денег")
+
+        # Если денег достаточно, возвращаем сдачу.
+        return money - self.total()
